@@ -1,7 +1,6 @@
 def flatten(array, result=[])
-  until array.size == 0
-    array[0].kind_of?(Array) ? flatten(array[0], result) : result << array[0]
-    array.shift
+  array.each do |elem|
+    elem.kind_of?(Array) ? flatten(elem, result) : result << elem
   end
   result
 end
