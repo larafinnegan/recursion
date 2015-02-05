@@ -1,25 +1,15 @@
-def merge_sort(array)
+def mergesort(array)
   return array if array.length <= 1
-
-    array1 = []
-    array2 = []
-    
-    array.each {|x| x < array[(array.length/2)] ? array1 << x : array2 << x}
-   array
-    array1
-   array2
-
-    while array1.length >= 1 || array2.length >= 1
-
-      merge_sort(array1) 
-      merge_sort(array2)
-  end
-#  return merge(array1, array2)
+    array1 = array[0..((array.length/2)-1)]
+    array2 = array[array1.length..-1]
+    mini_array1 = mergesort(array1)
+    mini_array2 = mergesort(array2)
+    newarray = merge(mini_array1, mini_array2)
 end
 
 def merge(a, b)
   sorted = []
-  until a.length == 1 || b.length == 1
+  while a.length > 0 && b.length > 0
     if a[0] <= b[0]
       sorted << a[0]
       a = a[1..-1]
@@ -27,12 +17,12 @@ def merge(a, b)
       sorted << b[0]
       b = b[1..-1]
     end
-    sorted += a if b.empty?
-    sorted += b if a.empty?
   end
-  sorted
+    sorted += a += b
 end
 
 
-merge_sort([10,9,1,1,3,6,7,3,5])
+array = Array.new(500)
+array.map! {|x| x = rand(300)}
+p mergesort(array)
 
